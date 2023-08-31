@@ -47,7 +47,8 @@ export const init = async (): Promise<void> => {
                 database: process.env.DATABASE_NAME,
                 synchronize,
                 entities: [ChatFlow, ChatMessage, Tool, Credential],
-                migrations: []
+                migrations: [],
+                ssl: { rejectUnauthorized: false }
             })
             break
         default:
