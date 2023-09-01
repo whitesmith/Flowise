@@ -397,7 +397,7 @@ const getEncryptionKeyPath = (): string => {
  */
 const getEncryptionKey = async (): Promise<string> => {
     try {
-        return await fs.promises.readFile(getEncryptionKeyPath(), 'utf8')
+        return process.env.ENCRYPTION_KEY || (await fs.promises.readFile(getEncryptionKeyPath(), 'utf8'))
     } catch (error) {
         throw new Error(error)
     }

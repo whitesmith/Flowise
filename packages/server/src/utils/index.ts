@@ -827,7 +827,7 @@ export const generateEncryptKey = (): string => {
  */
 export const getEncryptionKey = async (): Promise<string> => {
     try {
-        return await fs.promises.readFile(getEncryptionKeyPath(), 'utf8')
+        return process.env.ENCRYPTION_KEY || (await fs.promises.readFile(getEncryptionKeyPath(), 'utf8'))
     } catch (error) {
         const encryptKey = generateEncryptKey()
         await fs.promises.writeFile(getEncryptionKeyPath(), encryptKey)
